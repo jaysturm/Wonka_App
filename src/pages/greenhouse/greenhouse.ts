@@ -15,11 +15,13 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
   templateUrl: 'greenhouse.html',
 })
 export class GreenhousePage {
+  waterIp: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
               private http: Http) {
+                this.waterIp = '192.168.1.19';
   }
 
   ionViewDidLoad() {
@@ -40,14 +42,10 @@ export class GreenhousePage {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
 
-    this.http.post('http://10.130.16.156:5555/water', {}, options)
+    this.http.post(`http://${this.waterIp}:5555/water`, {}, options)
       .subscribe((response: Response) => {
         loader.dismiss();
-      })
-
-      // .then(data => {
-      //   loader.dismiss();
-      // });
+      });
   }
 
 }
