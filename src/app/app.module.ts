@@ -1,3 +1,5 @@
+import { SocketService } from './../services/socket/socket.service';
+import { HttpService } from './../services/http/http.service';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,6 +39,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    HttpService,
+    SocketService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

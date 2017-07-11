@@ -1,5 +1,5 @@
+import { HttpService } from './../../services/http/http.service';
 import { Component } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
 // import { HTTP } from '@ionic-native/http'; // use when going to native app
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
@@ -20,7 +20,7 @@ export class GreenhousePage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public loadingCtrl: LoadingController,
-              private http: Http) {
+              private http: HttpService) {
                 this.waterIp = '192.168.1.19';
   }
 
@@ -29,20 +29,13 @@ export class GreenhousePage {
   }
 
   waterZone(zone: number) {
-    this.showWatering(zone);
-  }
-
-  showWatering(zone: number) {
     let loader = this.loadingCtrl.create({
       content: `watering zone ${zone}...`
     });
 
     loader.present();
 
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    this.http.post(`http://${this.waterIp}:5555/water`, {}, options)
+    this.http.post(`http://${this.waterIp}:5555/water`, {})
       .subscribe((response: Response) => {
         loader.dismiss();
       });
