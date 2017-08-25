@@ -8,11 +8,12 @@ export class SocketService {
     socketIp: string;
 
     constructor(private http: HttpService) {
-        this.socketIp = '192.168.1.21';
+        this.socketIp = '192.168.1.5';
+        // this.socketIp = '10.130.16.89'
     }
 
     getSocketData(): Observable<Socket[]> {
-        let subject = new Subject();
+        let subject = new Subject<Socket[]>();
 
         this.http.get(`http://${this.socketIp}:5555/sockets`)
             .subscribe(resp => {
@@ -20,11 +21,11 @@ export class SocketService {
                 subject.complete();
             });
 
-        return subject;
+        return subject.asObservable();
     }
 
     togglePower(socket: number, on: boolean): Observable<Socket[]> {
-        let subject = new Subject();
+        let subject = new Subject<Socket[]>();
 
         console.log(`toggle power => socket ${socket}, power ${on}`);
 
@@ -38,6 +39,6 @@ export class SocketService {
             subject.complete();
         });
 
-        return subject;
+        return subject.asObservable();
     }
 }
