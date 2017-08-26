@@ -5,6 +5,9 @@ export class Socket {
     // sequential number of socket on strip
     socket: number;
 
+    // display name
+    name: string;
+
     // power state of socket on/off
     state: boolean;
 }

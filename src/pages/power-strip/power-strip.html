@@ -17,7 +17,7 @@
 
   <ion-list>
     <ion-item *ngFor="let s of sockets">
-      <ion-label>Socket {{s.socket}}</ion-label>
+      <ion-label>{{s.name}}</ion-label>
       <ion-toggle [(ngModel)]="s.state" (ionChange)="togglePower(s.socket)"></ion-toggle>
     </ion-item>
   </ion-list>

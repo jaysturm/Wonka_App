@@ -33,7 +33,25 @@ export class SocketService {
             powerOn: on,
             socket: socket
         }).subscribe(resp => {
-            console.log(`toggle power respose => ${resp}`);
+            console.log(`toggle power response => ${resp}`);
+
+            subject.next(resp.json());
+            subject.complete();
+        });
+
+        return subject.asObservable();
+    }
+
+    changeSocketName(socket: number, name: string): Observable<Socket[]> {
+        let subject = new Subject<Socket[]>();
+
+        console.log(`changing name for socket ${socket} to ${name}`);
+
+        this.http.post(`http://${this.socketIp}:5555/sockets/name`, {
+            name: name,
+            socket: socket
+        }).subscribe(resp => {
+            console.log(`socket name change response => ${resp}`);
 
             subject.next(resp.json());
             subject.complete();
