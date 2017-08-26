@@ -1,5 +1,6 @@
 import { SocketService } from './../services/socket/socket.service';
 import { HttpService } from './../services/http/http.service';
+import { TooltipsModule } from 'ionic-tooltips';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +27,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(WonkaApp)
+    IonicModule.forRoot(WonkaApp),
+    TooltipsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

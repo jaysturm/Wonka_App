@@ -16,9 +16,18 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-item *ngFor="let s of sockets">
-      <ion-label>{{s.name}}</ion-label>
-      <ion-toggle [(ngModel)]="s.state" (ionChange)="togglePower(s.socket)"></ion-toggle>
+    <ion-item *ngFor="let s of sockets_obsrv | async">
+      <ion-label color="default">
+        {{s.socket}}:
+      </ion-label>
+      <ion-input clearInput=true 
+                 required 
+                 color="default" 
+                 type="text" 
+                 [(ngModel)]="s.name"
+                 (ionBlur)="changeName(s.socket, $event.value)"
+                 placeholder="socket name"></ion-input>
+      <ion-toggle [(ngModel)]="s.state" (ionChange)="togglePower(s.socket, $event.value)"></ion-toggle>
     </ion-item>
   </ion-list>
 
