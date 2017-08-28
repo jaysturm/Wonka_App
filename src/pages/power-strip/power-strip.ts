@@ -17,6 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class PowerStripPage {
   sockets_obsrv: Observable<Socket[]>;
+  socket_names: string[] = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -29,6 +30,12 @@ export class PowerStripPage {
 
   ionViewWillEnter(){
     this.sockets_obsrv = this.socketService.getSocketData();
+
+    this.sockets_obsrv.subscribe(sockets => {
+      sockets.forEach(s => {
+        this.socket_names.push(s.name);
+      });
+    });
   }
 
   togglePower(socket: number, on: boolean) {
@@ -36,9 +43,11 @@ export class PowerStripPage {
   }
 
   changeName(socket: number, name: string) {
-    if (name === '')
+    if (name === '' || name === this.socket_names[socket - 1])
       return;
-    
+    else
+      this.socket_names[socket - 1] = name;
+
     this.socketService.changeSocketName(socket, name);
   }
 }
