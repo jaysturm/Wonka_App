@@ -8,8 +8,7 @@ export class SocketService {
     socketIp: string;
 
     constructor(private http: HttpService) {
-        this.socketIp = '192.168.1.5';
-        // this.socketIp = '10.130.16.89'
+        this.socketIp = '73.229.243.193';
     }
 
     getSocketData(): Observable<Socket[]> {
