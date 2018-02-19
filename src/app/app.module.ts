@@ -1,48 +1,43 @@
-import { SocketService } from './../services/socket/socket.service';
-import { HttpService } from './../services/http/http.service';
-import { TooltipsModule } from 'ionic-tooltips';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
-// import { HTTP } from '@ionic-native/http';  // use with going to native app
+import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { WonkaApp } from './app.component';
+import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
-import { GreenhousePage } from '../pages/greenhouse/greenhouse';
-import { PowerStripPage } from '../pages/power-strip/power-strip';
 import { TabsPage } from '../pages/tabs/tabs';
+import { PowerStripPageModule } from '../pages/power-strip/power-strip.module';
+import { GreenhousePageModule } from '../pages/greenhouse/greenhouse.module';
+
+import { SocketService, HttpService } from '../services';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 @NgModule({
   declarations: [
-    WonkaApp,
+    MyApp,
     HomePage,
-    GreenhousePage,
-    PowerStripPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(WonkaApp),
-    TooltipsModule
+    GreenhousePageModule,
+    PowerStripPageModule,
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    WonkaApp,
+    MyApp,
     HomePage,
-    GreenhousePage,
-    PowerStripPage,
     TabsPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    HttpService,
     SocketService,
+    HttpService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

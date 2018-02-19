@@ -4,7 +4,7 @@ import { PowerStripPage } from './power-strip';
 
 @NgModule({
   declarations: [
-    PowerStripPage,
+    PowerStripPage
   ],
   imports: [
     IonicPageModule.forChild(PowerStripPage),
