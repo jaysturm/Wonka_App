@@ -20,13 +20,14 @@
       <ion-label color="default">
         {{s.socket}}:
       </ion-label>
-      <ion-input clearInput=true 
-                 required 
-                 color="default" 
-                 type="text" 
+      <ion-input clearInput=true
+                 required
+                 color="default"
+                 type="text"
                  [(ngModel)]="s.name"
                  (ionBlur)="changeName(s.socket, $event.value)"
-                 placeholder="socket name"></ion-input>
+                 placeholder="socket name">
+      </ion-input>
       <ion-toggle [(ngModel)]="s.state" (ionChange)="togglePower(s.socket, $event.value)"></ion-toggle>
     </ion-item>
   </ion-list>
