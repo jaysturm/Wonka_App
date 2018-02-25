@@ -23,6 +23,14 @@ export class SocketService {
         return subject.asObservable();
     }
 
+    /**@function togglePower
+     * - toggle power on or off for a specified power strip socket
+     * @param {number} socket number of socket to toggle
+     * @param {boolean} on on or off, true or false
+     * @returns {Observable<Socket[]>}
+     * - observable of Socket array
+     * - Socket array conatains all current sockets and their metadata
+     */
     togglePower(socket: number, on: boolean): Observable<Socket[]> {
         let subject = new Subject<Socket[]>();
 
